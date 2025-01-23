@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Order Details</h1>
+        </div>
+    </header>
+    <main class="main order-details-page">
+        <div class="container">
+            <a href="{{ url_for('seller.view_orders') }}" class="btn">Back to Orders</a>
+            <h2>Order ID: {{ order.order_id }}</h2>
+            <table class="details-table">
+                <tr>
+                    <th>Buyer Name</th>
+                    <td>{{ order.buyer_name }}</td>
+                </tr>
+                <tr>
+                    <th>Buyer Phone</th>
+                    <td>{{ order.buyer_phone }}</td>
+                </tr>
+                <tr>
+                    <th>Buyer Email</th>
+                    <td>{{ order.buyer_email }}</td>
+                </tr>
+                <tr>
+                    <th>Delivery Address</th>
+                    <td>{{ order.delivery_address }}</td>
+                </tr>
+                <tr>
+                    <th>Quantity</th>
+                    <td>{{ order.quantity }}</td>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <td>${{ order.price }}</td>
+                </tr>
+                <tr>
+                    <th>Delivery Date</th>
+                    <td>{{ order.delivery_date.split("T")[0] }}</td>
+                </tr>
+                <tr>
+                    <th>Payment Method</th>
+                    <td>{{ order.payment_method }}</td>
+                </tr>
+                <tr>
+                    <th>Additional Notes</th>
+                    <td>{{ order.additional_notes or "None" }}</td>
+                </tr>
+                <tr>
+                    <th>Order Status</th>
+                    <td>{{ order.order_status }}</td>
+                </tr>
+                <tr>
+                    <th>Created At</th>
+                    <td>{{ order.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                </tr>
+            </table>
+
+            <h3>Status History</h3>
+            <ul class="status-history">
+                {% for status in order.status_history %}
+                <li>
+                    <strong>{{ status.status | capitalize }}</strong> - {{ status.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% if order.order_status == "Pending" %}
+            <form method="POST" action="{{ url_for('seller.update_order_status') }}">
+                <input type="hidden" name="order_id" value="{{ order.order_id }}">
+                <button type="submit" name="action" value="accept" class="btn btn-accept">Accept</button>
+                <button type="submit" name="action" value="reject" class="btn btn-reject">Reject</button>
+            </form>
+            {% endif %}
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Gas Connect. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

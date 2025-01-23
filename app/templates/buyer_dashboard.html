@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Dashboard - Gas Connect</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Gas Connect - Buyer Dashboard</h1>
+        </div>
+    </header>
+    <main class="main dashboard-page">
+        <div class="container">
+            <nav class="sidebar">
+                <ul class="menu">
+                    <li><a href="{{ url_for('buyer.search_sellers') }}">Buy Gas</a></li>
+                    <li><a href="{{ url_for('buyer.my_orders') }}">My Orders</a></li>
+                    <!-- <li><a href="{{ url_for('buyer.rate_seller') }}">Rate Sellers</a></li> -->
+                    <li><a href="{{ url_for('buyer.edit_user_profile') }}">Update Profile</a></li>
+                    <li><a href="{{ url_for('buyer.logout') }}">Logout</a></li>
+                </ul>
+            </nav>
+            <section class="dashboard-content">
+                <h2>Welcome, {{ user.username }} !</h2>
+                <p>Find sellers, manage your orders, and rate sellers from this dashboard.</p>
+                <div class="stats">
+                    <div class="stat">
+                        <h3>{{ order_pending }}</h3>
+                        <p>Pending Orders</p>
+                    </div>
+                    <div class="stat">
+                        <h3>{{ order_delivered }}</h3>
+                        <p>Completed Orders</p>
+                    </div>
+                    <div class="stat">
+                        <h3>{{ order_rejected }}</h3>
+                        <p>Cancelled Orders</p>
+                    </div>
+                    <div class="stat">
+                        <h3>{{ order_count }}</h3>
+                        <p>Total Orders</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Gas Connect. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

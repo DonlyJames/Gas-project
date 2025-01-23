@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History - Gas Connect</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Gas Connect</h1>
+        </div>
+    </header>
+
+    <!-- Flash Messages Section -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="alert {{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <main class="main">
+        <div class="container">
+            <h2>Order History</h2>
+
+            <div class="order-history">
+                {% if orders %}
+                <p>Here is the list of all the items you have purchased.</p>
+                    <table class="order-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                            <tr>
+                                <td>{{ order.created_at.strftime('%Y-%m-%d') }}</td>
+                                <td>{{ order.quantity }} Kg</td>
+                                <td>₦{{ order.price }}</td>
+                                <td>{{ order.order_status }}</td>
+                                <td>
+                                    {% if order.order_status == "Pending" %}
+                                    <form method="POST" action="{{ url_for('buyer.cancel_order') }}">
+                                        <input type="hidden" name="order_id" value="{{ order.order_id }}">
+                                        <button type="submit" class="btn btn-success">Cancel</button>
+
+                                    </form>
+                                    {% elif order.order_status == "Delivered" %}
+                                    <form method="POST" action="{{ url_for('buyer.confirm_delivery') }}">
+                                        <input type="hidden" name="order_id" value="{{ order.order_id }}">
+                                        <button type="submit" class="btn secondary">Confirm</button>
+                                    </form>
+                                    {% elif order.order_status == "Completed" and not order.rated %}
+                                    <form method="GET" action="{{ url_for('buyer.rate_seller') }}">
+                                        <input type="hidden" name="order_id" value="{{ order.order_id }}">
+                                        <input type="hidden" name="seller_id" value="{{ order.seller_id }}">
+                                        <input type="hidden" name="buyer_id" value="{{ order.buyer_id }}">
+                                        <button type="submit" class="btn primary">Rate</button>
+                                    </form>
+                                    {% elif order.order_status == "Completed" and order.rated %}
+                                    <!-- <span>Rated</span> -->
+                                    <form method="GET" action="{{ url_for('buyer.generate_receipt') }}">
+                                        <input type="hidden" name="order_id" value="{{ order.order_id }}">
+                                        <input type="hidden" name="seller_id" value="{{ order.seller_id }}">
+                                        <input type="hidden" name="buyer_id" value="{{ order.buyer_id }}">
+                                        <button type="submit" class="btn primary">Print Receipt</button>
+                                    </form>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>You have not made any orders yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Gas Connect. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

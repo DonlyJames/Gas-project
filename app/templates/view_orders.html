@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Orders - Gas Connect</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Gas Connect - View Orders</h1>
+        </div>
+    </header>
+    <main class="main orders-page">
+        <div class="container">
+            <h2>Order Management</h2>
+            <p>Here you can view and manage your orders.</p>
+            
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <label for="status-filter">Filter by Status:</label>
+                <select id="status-filter" onchange="filterOrders()">
+                    <option value="all">All</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Accepted">Accepted</option>
+                    <option value="Delivered">Delivered</option>
+                    <option value="Rejected">Rejected</option>
+                </select>
+            </div>
+            
+            <!-- Orders Table -->
+            <table class="order-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Buyer Name</th>
+                        <!-- <th>Phone</th>
+                        <th>Address</th> -->
+                        <th>Quantity</th>
+                        <!-- <th>Delivery Date</th>
+                        <th>Payment Method</th>
+                        <th>Comments</th> -->
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr class="order-row" data-status="{{ order.order_status }}">
+                        <td>{{ order.order_id }}</td>
+                        <td>{{ order.buyer_name }}</td>
+                        <!-- <td>{{ order.buyer_phone }}</td>
+                        <td>{{ order.delivery_address }}</td>-->
+                        <td>{{ order.quantity }}Kg</td>
+                        <!-- <td>{{ order.delivery_date }}</td>
+                        <td>{{ order.payment_method }}</td>
+                        <td>{{ order.additional_notes }}</td> -->
+                        <td>{{ order.order_status }}</td>
+                        <td>
+                            <form method="POST" action="{{ url_for('seller.view_order_detail') }}">
+                                <input type="hidden" name="order_id" value="{{ order.order_id }}">
+                                <button type="submit" class="btn primary">View Details</button>
+                            </form>
+                            {% if order.order_status == "Pending" %}
+                            <form method="POST" action="{{ url_for('seller.update_order_status') }}">
+                                <input type="hidden" name="order_id" value="{{ order.order_id }}">
+                                <button type="submit" name="action" value="accept" class="btn secondary">Accept</button>
+                                <button type="submit" name="action" value="reject" class="btn secondary">Reject</button>
+                            </form>
+                            {% endif %}
+                            {% if order.order_status == "Accepted" %}
+                            <form method="POST" action="{{ url_for('seller.mark_as_delivered') }}">
+                                <input type="hidden" name="order_id" value="{{ order.order_id }}">
+                                <button type="submit" class="btn secondary">Delivered</button>
+                            </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Gas Connect. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Add optional JavaScript for client-side filtering -->
+    <script>
+        function filterOrders() {
+            const filter = document.getElementById('status-filter').value.toLowerCase();
+            const rows = document.querySelectorAll('.order-row');
+            rows.forEach(row => {
+                const status = row.getAttribute('data-status').toLowerCase();
+                row.style.display = (filter === 'all' || status === filter) ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Gas Connect</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Gas Connect</h1>
+        </div>
+    </header>
+    <main class="main form-page">
+        <div class="container">
+            <h2>Login</h2>
+            <form action="/auth/login" method="post" class="form">
+
+            <!-- Flash Messages Section -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <div class="alert {{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                
+                <button type="submit" class="btn primary">Login</button>
+            </form>
+            <p>Don't have an account? <a href="/auth/register/buyer">Register as Buyer</a> | <a href="/auth/register/seller">Register as Seller</a></p>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Gas Connect. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

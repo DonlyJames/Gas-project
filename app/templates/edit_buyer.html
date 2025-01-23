@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Buyer Profile - Gas Connect</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Gas Connect</h1>
+        </div>
+    </header>
+    <main class="main form-page">
+        <div class="container">
+            <h2>Edit Your Profile</h2>
+            <form action="/buyer/edit_user_profile" method="post" class="form">
+                <!-- Flash Messages Section -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div class="flash-messages">
+                            {% for category, message in messages %}
+                                <div class="alert {{ category }}">{{ message }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" value="{{ buyer_name }}" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="{{ buyer_email }}" required>
+
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" value="{{ buyer_phone }}" required>
+
+                <button type="submit" class="btn primary">Update Profile</button>
+            </form>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Gas Connect. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

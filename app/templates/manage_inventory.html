@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Inventory - Gas Connect</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Gas Connect - Manage Inventory</h1>
+        </div>
+    </header>
+    <main class="main inventory-page">
+        <div class="container">
+            <h2>Inventory Management</h2>
+            <p>Manage your inventory by adding, updating, or removing products.</p>
+
+            <!-- Add New Item Section -->
+            <section class="add-item-section">
+                <h3>Add New Item</h3>
+                <form method="POST" action="{{ url_for('seller.manage_inventory') }}" class="form">
+                    <label for="item-name">Product Name:</label>
+                    <input type="text" id="item-name" name="item_name" placeholder="Enter product name" required>
+
+                    <label for="item-quantity">Quantity (Kg):</label>
+                    <input type="number" id="item-quantity" name="item_quantity" placeholder="Enter quantity" required>
+
+                    <label for="item-price">Price per Kg:</label>
+                    <input type="number" step="0.01" id="item-price" name="item_price" placeholder="Enter price" required>
+
+                    <button type="submit" class="btn primary">Add Item</button>
+                </form>
+            </section>
+
+            <!-- Inventory Table Section -->
+            <section class="inventory-table-section">
+                <h3>Current Inventory</h3>
+                <table class="order-table">
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Product Name</th>
+                            <th>Quantity (Kg)</th>
+                            <th>Price per Kg</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in inventory %}
+                        <tr>
+                            <td>{{ item.product_id }}</td>
+                            <td>{{ item.product_name }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.price }}</td>
+                            <td>
+                                <form method="POST" action="{{ url_for('seller.update_inventory') }}" style="display: inline;">
+                                    <input type="hidden" name="product_id" value="{{ item.product_id }}">
+                                    <button type="submit" class="btn secondary">Update</button>
+                                </form>
+                                <form method="POST" action="{{ url_for('seller.delete_inventory') }}" style="display: inline;">
+                                    <input type="hidden" name="product_id" value="{{ item.product_id }}">
+                                    <button type="submit" class="btn btn-reject">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Gas Connect. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

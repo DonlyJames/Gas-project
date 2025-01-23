@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Dashboard - Gas Connect</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Gas Connect - Seller Dashboard</h1>
+        </div>
+    </header>
+    <main class="main dashboard-page">
+        <div class="container">
+            <nav class="sidebar">
+                <ul class="menu">
+                    <li><a href="{{ url_for('seller.view_orders') }}">View Orders</a></li>
+                    <!-- <li><a href="{{ url_for('seller.manage_inventory') }}">Manage Inventory</a></li> -->
+                    <li><a href="{{ url_for('seller.edit_profile') }}">Update Profile</a></li>
+                    <li><a href="{{ url_for('seller.view_ratings') }}">View Ratings</a></li>
+                    <li><a href="{{ url_for('seller.logout') }}">Logout</a></li>
+                </ul>
+            </nav>
+            <section class="dashboard-content">
+                <h2>Welcome, {{ user.username }}</h2>
+                <p>Manage your orders, inventory, and profile from this dashboard.</p>
+                <div class="stats">
+                    
+                    <div class="stat">
+                        <h3> {{ order_pending }} </h3>
+                        <p>Pending Orders</p>
+                    </div>
+                    <div class="stat">
+                        <h3> {{ order_delivered }} </h3>
+                        <p>Total Delivered</p>
+                    </div>
+                    <div class="stat">
+                        <h3> {{ sellers_rating.average_rating }} </h3>
+                        <p>Average Rating</p>
+                    </div>
+                    
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Gas Connect. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

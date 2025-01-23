@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate Sellers - Gas Connect</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Rate a Seller</h1>
+        </div>
+    </header>
+    
+    <main class="main form-page">
+        <div class="container">
+            <div class="rating-card">
+                <form action="/buyer/rate_seller" method="post" class="form">
+                    <input type="hidden" name="seller_id" value="{{ seller_id }}">
+                    <input type="hidden" name="buyer_id" value="{{ buyer_id }}">
+                    <input type="hidden" name="order_id" value="{{ order_id }}">
+                    <input type="hidden" id="rating-value" name="rating" value="1"> 
+                    
+                    <h4 class="form-title">Rate this Seller:</h4>
+                    <div class="star-rating">
+                        {% for i in range(1, 6) %}
+                            <span class="fa fa-star" data-value="{{ i }}"></span>
+                        {% endfor %}
+                    </div>
+                    
+                    <label for="review" class="form-label">Your Review:</label>
+                    <textarea id="review" name="review" rows="4" class="form-textarea" placeholder="Write your review here..."></textarea>
+                    
+                    <button type="submit" class="btn primary">Submit Rating</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Gas Connect. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const stars = document.querySelectorAll(".fa-star");
+            const ratingValueInput = document.getElementById("rating-value");
+
+            stars.forEach(star => {
+                star.addEventListener("click", function () {
+                    const rating = this.getAttribute("data-value");
+                    ratingValueInput.value = rating;
+
+                    stars.forEach(s => {
+                        if (parseInt(s.getAttribute("data-value")) <= rating) {
+                            s.classList.add("checked");
+                        } else {
+                            s.classList.remove("checked");
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

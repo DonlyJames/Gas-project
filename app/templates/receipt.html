@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt - Gas Connect</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body class="receipt-body">
+    <div class="receipt-container">
+        <div class="receipt-header">Gas Connect Receipt</div>
+        
+        <div class="receipt-details">
+            <p><strong>Date:</strong> {{ order.created_at.strftime('%Y-%m-%d') }}</p>
+            <p><strong>Order ID:</strong> {{ order.order_id }}</p>
+            <p><strong>Name:</strong> {{ order.buyer_name }}</p>
+            <p><strong>Seller:</strong> {{ seller_name }}</p>
+        </div>
+
+        <h3>Order Details</h3>
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price (₦)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gas</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>{{ order.price }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="total-price">Total: ₦{{ total_price }}</div>
+
+        <button class="btn-print no-print" onclick="window.print()">Print Receipt</button>
+    </div>
+</body>
+</html>

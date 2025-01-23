@@ -1,0 +1,500 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header Styles */
+.header {
+    background-color: #0066cc;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+}
+
+.header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.nav {
+    margin-top: 0.5rem;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 1rem;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+/* Hero Section Styles */
+.hero {
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 4rem 0;
+}
+
+.hero h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.cta-buttons {
+    display: inline-flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.6rem 1.0rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    transition: background-color 0.5s;
+}
+
+.btn.primary {
+    background-color: #0066cc;
+    color: #fff;
+}
+
+.btn.primary:hover {
+    background-color: #004999;
+}
+
+.btn.secondary {
+    background-color: #f4f4f4;
+    color: #0066cc;
+    border: 1px solid #0066cc;
+}
+
+.btn.secondary:hover {
+    background-color: #d9e8ff;
+}
+
+/* Footer Styles */
+.footer {
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+main {
+    flex: 1; /* Fills the available space */
+    padding: 2rem;
+}
+
+
+/* Form Page Styles */
+.form-page {
+    text-align: center;
+    padding: 2rem 0;
+}
+    
+.form {
+    display: inline-block;
+    text-align: left;
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+    
+.form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+    
+.form input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding-right: 10px;
+    box-sizing: border-box;
+}
+
+.form select {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+    
+.form input:focus {
+    border-color: #0066cc;
+    outline: none;
+    box-shadow: 0 0 3px rgba(0, 102, 204, 0.5);
+}
+    
+.form .btn {
+    width: 100%;
+    text-align: center;
+    font-size: 1.1rem;
+}
+    
+.form-page p {
+    -top: 1rem;
+}
+    
+.form-page a {
+    color: #0066cc;
+    text-decoration: none;
+}
+    
+.form-page a:hover {
+    text-decoration: underline;
+}
+
+/* Dashboard Page Styles */
+.dashboard-page {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.sidebar {
+    width: 25%;
+    background-color: #f4f4f4;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    margin-bottom: 1rem;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #0066cc;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    text-decoration: underline;
+}
+
+.dashboard-content {
+    width: 75%;
+}
+
+.dashboard-content .stats {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.stat {
+    background-color: #0066cc;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat h3 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+/* seller list for search sellers page */
+
+.seller-list {
+    margin-top: 2rem;
+}
+
+.seller-list h3 {
+    font-size: 1.25rem;
+    color: #0066cc;
+    margin-bottom: 1rem;
+}
+
+.seller-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.seller-list p {
+    margin: 0.5rem 0;
+}
+
+.seller-list form {
+    margin-top: 1rem;
+}
+
+.seller-list form button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+
+
+
+/* my order page styling */
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.order-table th, .order-table td {
+    border: 1px solid #ddd;
+    padding: 0.8rem;
+    text-align: left;
+}
+
+.order-table th {
+    background-color: #0066cc;
+    color: white;
+    font-weight: bold;
+}
+
+.order-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.order-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.order-table td {
+    font-size: 0.9rem;
+}
+
+/* flash messages */
+.flash-messages {
+    margin-bottom: 20px;
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.alert.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert.danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* view_order details table */
+.details-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.details-table th, .details-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.details-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.status-history {
+    list-style: none;
+    padding: 0;
+}
+
+.status-history li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+
+/* star css for rating */
+.fa-star {
+    font-size: 24px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.fa-star.checked {
+    color: gold;
+}
+
+.fa-star:hover {
+    color: gold;
+}
+
+.star-rating {
+    display: flex;
+    gap: 2px; /* Adjust gap between stars */
+} 
+
+ /* Ratings Page Styling */
+.ratings-section, .reviews-section {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.ratings-section h2, .reviews-section h2 {
+    color: #0066cc;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.star-rating {
+    display: inline-flex;
+    gap: 3px;
+    font-size: 24px;
+}
+
+.rating-score {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.reviews-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.review-item {
+    background: #f9f9f9;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.review-rating {
+    margin-bottom: 0.5rem;
+}
+
+.review-text {
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+.no-reviews {
+    font-size: 1.2rem;
+    color: #777;
+    text-align: center;
+}
+
+/* Receipt styling */
+.receipt-body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.receipt-container {
+    background: white;
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.receipt-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0066cc;
+    margin-bottom: 10px;
+}
+
+.receipt-details {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.receipt-details p {
+    margin: 5px 0;
+}
+
+.total-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.btn-print {
+    margin-top: 15px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-print:hover {
+    background-color: #004999;
+}
+
+@media print {
+    .btn-print {
+        display: none;
+    }
+    body {
+        background: white;
+    }
+    .receipt-container {
+        box-shadow: none;
+        border: none;
+    }
+}
