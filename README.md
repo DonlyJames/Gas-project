@@ -16,6 +16,3 @@ Oversee transactions and platform activities
 Tech Stack
 Backend: Flask, MongoDB
 Frontend: HTML, CSS, JavaScript
-Deployment: (Specify if hosted)
-
-This project is licensed under the MIT License.
