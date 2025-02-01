@@ -15,4 +15,4 @@ Oversee transactions and platform activities
 
 Tech Stack
 Backend: Flask, MongoDB
-Frontend: HTML, CSS, JavaScript
+Frontend: HTML, CSS
